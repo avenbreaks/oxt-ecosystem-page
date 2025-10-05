@@ -11,36 +11,57 @@ jobs:
     permissions:
       contents: write
       pull-requests: write
-      actions: read
+
     steps:
-      - name: Checkout
+      - name: 🧾 Checkout repository
         uses: actions/checkout@v4
 
-      - name: Setup Node
+      - name: ⚙️ Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 20
 
-      - name: Export from Airtable
+      - name: 📦 Export from Airtable
         env:
           AIRTABLE_TOKEN: ${{ secrets.AIRTABLE_TOKEN }}
           AIRTABLE_BASE_ID: ${{ secrets.AIRTABLE_BASE_ID }}
           AIRTABLE_TABLE: ${{ secrets.AIRTABLE_TABLE }}
         run: node scripts/airtable-export.mjs
 
-      - name: Commit changes
+      - name: 🧠 Prepare Git config
         run: |
           git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git checkout -b chore/sync-projects-$(date +%Y%m%d%H%M)
-          git add lib/projects.generated.json
-          git commit -m "chore: sync projects from Airtable"
-          git push -u origin HEAD
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-      - name: Open PR
+      - name: 🧹 Check for changes
+        id: check_changes
+        run: |
+          git add lib/projects.generated.json
+          if git diff --cached --quiet; then
+            echo "has_changes=false" >> $GITHUB_OUTPUT
+            echo "✅ No changes to commit — skipping PR creation."
+          else
+            echo "has_changes=true" >> $GITHUB_OUTPUT
+            echo "⚡ Detected changes, will create PR."
+          fi
+
+      - name: 🚀 Create Pull Request
+        if: steps.check_changes.outputs.has_changes == 'true'
         uses: peter-evans/create-pull-request@v6
         with:
-          title: "chore: sync projects from Airtable"
-          branch: ${{ github.ref_name }}
+          branch: chore/sync-projects
           commit-message: "chore: sync projects from Airtable"
+          title: "chore: sync projects from Airtable"
           body: "This PR syncs approved projects from Airtable into lib/projects.generated.json"
+          base: main
+          delete-branch: true
+          labels: automated, sync
+
+#      - name: 🤖 Auto-merge PR
+#        if: steps.check_changes.outputs.has_changes == 'true'
+#        uses: peter-evans/enable-pull-request-merge@v3
+#        with:
+#          merge-method: squash
+
+      - name: ✅ Done
+        run: echo "🎉 Sync complete — PR created only if changes detected."
