@@ -1,1 +1,21 @@
-[]
+[
+  {
+    "id": "recssFHSQf960uTvV",
+    "name": "Metamask",
+    "category": "Wallet",
+    "description": "MetaMask is a non-custodial crypto wallet that allows users to store, manage, and interact with digital assets and decentralized applications (dApps) across various blockchain networks, including Ethereum and its compatibles.",
+    "valueProposition": "MetaMask provides an easily accessible, highly secure Web3 experience without relying on third parties. With its browser extension and mobile app, users can quickly connect to dApps with just one click—making Web3 simpler and safer for everyone.",
+    "website": "https://metamask.io/",
+    "twitter": "https://x.com/MetaMask",
+    "github": "https://github.com/MetaMask",
+    "chains": [
+      "Oorth Nexus",
+      "OP Mainnet",
+      "World Chain",
+      "Base",
+      "Zora"
+    ],
+    "logoUrl": "https://images.ctfassets.net/clixtyxoaeas/4rnpEzy1ATWRKVBOLxZ1Fm/a74dc1eed36d23d7ea6030383a4d5163/MetaMask-icon-fox.svg",
+    "approvedAt": null
+  }
+]
