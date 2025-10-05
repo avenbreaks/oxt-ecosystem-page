@@ -1,0 +1,45 @@
+name: Sync Projects from Airtable
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 6 * * *' # daily at 06:00 UTC
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Export from Airtable
+        env:
+          AIRTABLE_TOKEN: ${{ secrets.AIRTABLE_TOKEN }}
+          AIRTABLE_BASE_ID: ${{ secrets.AIRTABLE_BASE_ID }}
+          AIRTABLE_TABLE: ${{ secrets.AIRTABLE_TABLE }}
+        run: node scripts/airtable-export.mjs
+
+      - name: Commit changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git checkout -b chore/sync-projects-$(date +%Y%m%d%H%M)
+          git add lib/projects.generated.json
+          git commit -m "chore: sync projects from Airtable"
+          git push -u origin HEAD
+
+      - name: Open PR
+        uses: peter-evans/create-pull-request@v6
+        with:
+          title: "chore: sync projects from Airtable"
+          branch: ${{ github.ref_name }}
+          commit-message: "chore: sync projects from Airtable"
+          body: "This PR syncs approved projects from Airtable into lib/projects.generated.json"
