@@ -1,3 +1,5 @@
+import projectsData from './projects.generated.json'
+
 export type Program = {
   title: string
   status: "Live" | "Ended" | "Upcoming"
@@ -6,12 +8,18 @@ export type Program = {
 }
 
 export type Project = {
+  id: string
   slug: string
   name: string
-  category: "DEX" | "Bridge" | "Lending" | "Identity" | "Analytics" | "Infra"
+  category: "Analytics" | "Bridge" | "CEX" | "DEX" | "Derivatives" | "Gaming" | "Lending" | "Liquid Staking" | "NFT Market" | "Onchain Tooling" | "OP Collective" | "RWA" | "SocialFi" | "Wallet" | "Identity" | "Infra" | "Other"
   description: string
   valueProposition: string
   chains: string[]
+  website?: string
+  twitter?: string
+  github?: string
+  logoUrl?: string
+  approvedAt?: string | null
   links: {
     website?: string
     x?: string
@@ -20,72 +28,28 @@ export type Project = {
   programs: Program[]
 }
 
-export const PROJECTS: Project[] = [
-  {
-    slug: "oorthswap",
-    name: "OorthSwap",
-    category: "DEX",
-    description:
-      "An AMM DEX purpose‑built for the Oorth Nexus with concentrated liquidity and low fees optimized for OORTH assets.",
-    valueProposition:
-      "Efficient liquidity with capital concentration, deep pools for native OORTH pairs, and seamless routing across pools.",
-    chains: ["Oorth Nexus"],
+// Transform the imported data to match our Project type
+const transformProjectData = (rawData: any[]): Project[] => {
+  return rawData.map((item) => ({
+    id: item.id,
+    slug: item.name.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, ''),
+    name: item.name,
+    category: item.category as Project['category'],
+    description: item.description,
+    valueProposition: item.valueProposition,
+    chains: item.chains || [],
+    website: item.website,
+    twitter: item.twitter,
+    github: item.github,
+    logoUrl: item.logoUrl,
+    approvedAt: item.approvedAt,
     links: {
-      website: "#",
-      x: "https://x.com",
-      github: "https://github.com",
+      website: item.website,
+      x: item.twitter,
+      github: item.github,
     },
-    programs: [
-      { title: "Liquidity Campaign S1", status: "Live", reward: "$250K in OORTH" },
-      { title: "Gov Fund Incentives S1", status: "Upcoming" },
-    ],
-  },
-  {
-    slug: "nexusbridge",
-    name: "NexusBridge",
-    category: "Bridge",
-    description:
-      "Omnichain bridge for moving assets to and from the Oorth Nexus with fast finality and proof‑based security.",
-    valueProposition: "Trust‑minimized proofs with compact messages and native gas abstraction for end users.",
-    chains: ["Oorth Nexus", "Ethereum"],
-    links: {
-      website: "#",
-      x: "https://x.com",
-    },
-    programs: [{ title: "Bridge Rewards", status: "Live", reward: "$50K OORTH" }],
-  },
-  {
-    slug: "orbitlend",
-    name: "OrbitLend",
-    category: "Lending",
-    description: "Non‑custodial money market on Oorth Nexus offering variable and fixed‑rate lending for core assets.",
-    valueProposition: "Risk‑aware interest rate model with isolated pools and circuit‑breaker guardians.",
-    chains: ["Oorth Nexus"],
-    links: {
-      website: "#",
-      github: "https://github.com",
-    },
-    programs: [{ title: "Safety Module Bootstrapping", status: "Upcoming" }],
-  },
-  {
-    slug: "astroid",
-    name: "AstroID",
-    category: "Identity",
-    description:
-      "Composable identity and reputation for Oorth apps with verifiable credentials and privacy‑preserving proofs.",
-    valueProposition: "Portable credentials, zk attestations, and spam‑resistant onboarding flows.",
-    chains: ["Oorth Nexus"],
-    links: { website: "#", x: "https://x.com" },
-    programs: [{ title: "Dev Grants Q4", status: "Live" }],
-  },
-  {
-    slug: "sphere-analytics",
-    name: "Sphere Analytics",
-    category: "Analytics",
-    description: "Chain and dApp analytics focused on Oorth Nexus with real‑time dashboards and growth metrics.",
-    valueProposition: "Streaming data pipeline with sub‑minute freshness and friendly workspace sharing.",
-    chains: ["Oorth Nexus"],
-    links: { website: "#", github: "https://github.com" },
-    programs: [{ title: "Insight Bounties", status: "Ended" }],
-  },
-]
+    programs: [], // No programs data in the JSON, keeping empty array
+  }))
+}
+
+export const PROJECTS: Project[] = transformProjectData(projectsData)

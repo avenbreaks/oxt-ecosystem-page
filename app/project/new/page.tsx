@@ -19,6 +19,7 @@ import {
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb"
 import { useToast } from "@/hooks/use-toast"
+import { ChainSelector } from "@/components/chain-selector"
 
 type FormState = {
   name: string
@@ -31,8 +32,6 @@ type FormState = {
   chains: string[]
   logoUrl?: string
 }
-
-const ALL_CHAINS = ["Oorth Nexus", "OP Mainnet", "World Chain", "Zora", "Base"]
 
 export default function NewProjectPage() {
   const [submitting, setSubmitting] = useState(false)
@@ -201,23 +200,10 @@ export default function NewProjectPage() {
 
             <div className="space-y-3 md:col-span-2">
               <label className="text-sm font-medium">Chains</label>
-              <div className="flex flex-wrap gap-3">
-                {ALL_CHAINS.map((c) => {
-                  const checked = form.chains.includes(c)
-                  return (
-                    <button
-                      key={c}
-                      type="button"
-                      onClick={() => {
-                        onChange("chains", checked ? form.chains.filter((x) => x !== c) : [...form.chains, c])
-                      }}
-                      aria-pressed={checked}
-                    >
-                      <Badge variant={checked ? "default" : "outline"}>{c}</Badge>
-                    </button>
-                  )
-                })}
-              </div>
+              <ChainSelector 
+                selectedChains={form.chains}
+                onChainsChange={(chains) => onChange("chains", chains)}
+              />
             </div>
 
             <div className="md:col-span-2 flex items-center gap-3">

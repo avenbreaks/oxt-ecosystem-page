@@ -1,5 +1,43 @@
 [
   {
+    "id": "recLC1bETaTL2zJO3",
+    "name": "Hyperlane",
+    "category": "Bridge",
+    "description": "Hyperlane is an open interoperability framework, providing tools for developers to connect and build cross-chain applications that communicate securely across blockchains. It operates without a token or governance process. In 2022, Hyperlane raised $18.5 million in seed funding led by Variant, with support from investors like Galaxy Digital and Circle.",
+    "valueProposition": "Hyperlane is an open framework for interoperability. It is the toolkit empowering developers to connect any chain and build applications that can easily and securely communicate between multiple blockchains.",
+    "website": "https://hyperlane.xyz/",
+    "twitter": "https://x.com/hyperlane",
+    "github": "https://github.com/hyperlane-xyz",
+    "chains": [
+      "Oorth Nexus",
+      "OP Mainnet",
+      "World Chain",
+      "Zora",
+      "Base"
+    ],
+    "logoUrl": "https://cdn.prod.website-files.com/678a77b8058ff9725bf70237/67b79e35477cdb6391be3d01_67b774bb291cdd08ab39d350_wGzRPeEf_400x400.avif",
+    "approvedAt": null
+  },
+  {
+    "id": "reckxYFpxJAyUmeLz",
+    "name": "Blockscout",
+    "category": "Analytics",
+    "description": "Blockscout is an open-source blockchain explorer designed for Ethereum Virtual Machine (EVM)-based networks. It provides users with a comprehensive interface to search transactions, view account balances, verify and interact with smart contracts, and engage with decentralized applications across various Ethereum networks, including mainnets, testnets, sidechains, and Layer 2 solutions. Unlike centralized, closed-source explorers, Blockscout offers transparency and flexibility, supporting hundreds of chains and rollups within the broader blockchain ecosystem, such as Ethereum, Cosmos, Polkadot, Avalanche, and Near.",
+    "valueProposition": "Blockscout is an open-source blockchain explorer offering comprehensive transaction tracking, smart contract interaction, and data transparency across EVM-compatible networks. It empowers developers and users with a flexible, multi-chain tool for exploring and verifying blockchain activity.",
+    "website": "https://www.blockscout.com/",
+    "twitter": "https://twitter.com/blockscoutcom",
+    "github": "https://github.com/blockscout",
+    "chains": [
+      "Oorth Nexus",
+      "OP Mainnet",
+      "World Chain",
+      "Zora",
+      "Base"
+    ],
+    "logoUrl": "https://cdn.prod.website-files.com/678a77b8058ff9725bf70237/67b75f4a768c94861bd1f66e_67a3b27e43f637e610797884_676acd76103cbec6bb1b9037_1RBJKVcR_400x400.avif",
+    "approvedAt": null
+  },
+  {
     "id": "recssFHSQf960uTvV",
     "name": "Metamask",
     "category": "Wallet",

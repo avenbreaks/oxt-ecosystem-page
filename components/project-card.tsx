@@ -6,15 +6,22 @@ import { Badge } from "@/components/ui/badge"
 import { Globe, Github, Twitter } from "lucide-react"
 import type { Project } from "@/lib/projects"
 import Image from "next/image"
+import { ChainBadges } from "@/components/chain-badges"
 
 export function ProjectCard({ project }: { project: Project }) {
   return (
     <Link href={`/project/${project.slug}`} className="block group">
       <Card className="h-full transition-colors hover:bg-accent/30">
         <CardHeader className="grid grid-cols-[48px_1fr_auto] items-start gap-4">
-          {/* Logo placeholder */}
+          {/* Logo */}
           <div className="size-12 rounded-lg bg-secondary border flex items-center justify-center overflow-hidden">
-            <Image src="/project-logo-placeholder.jpg" alt="" width={48} height={48} className="object-cover" />
+            <Image 
+              src={project.logoUrl || "/project-logo-placeholder.jpg"} 
+              alt={`${project.name} logo`} 
+              width={48} 
+              height={48} 
+              className="object-cover" 
+            />
           </div>
           <div>
             <CardTitle className="text-base">{project.name}</CardTitle>
@@ -26,12 +33,8 @@ export function ProjectCard({ project }: { project: Project }) {
 
         <CardContent className="-mt-4">
           <CardDescription className="line-clamp-2">{project.description}</CardDescription>
-          <div className="mt-3 flex flex-wrap gap-2">
-            {project.chains.map((c) => (
-              <span key={c} className="text-xs rounded-full border px-2 py-0.5 bg-secondary">
-                {c}
-              </span>
-            ))}
+          <div className="mt-3">
+            <ChainBadges chains={project.chains} maxVisible={3} />
           </div>
         </CardContent>
 

@@ -14,9 +14,11 @@ import {
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb"
 import { Globe, Github, Twitter } from "lucide-react"
+import { ChainBadges } from "@/components/chain-badges"
 
-export default function ProjectDetailPage({ params }: { params: { slug: string } }) {
-  const project = PROJECTS.find((p) => p.slug === params.slug)
+export default async function ProjectDetailPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params
+  const project = PROJECTS.find((p) => p.slug === slug)
   if (!project) return notFound()
 
   return (
@@ -61,12 +63,8 @@ export default function ProjectDetailPage({ params }: { params: { slug: string }
             <CardContent className="-mt-2 space-y-4">
               <div>
                 <h3 className="text-sm font-semibold">Chains:</h3>
-                <div className="mt-2 flex flex-wrap gap-2">
-                  {project.chains.map((c) => (
-                    <span key={c} className="text-xs rounded-full border px-2 py-0.5 bg-secondary">
-                      {c}
-                    </span>
-                  ))}
+                <div className="mt-2">
+                  <ChainBadges chains={project.chains} maxVisible={5} />
                 </div>
               </div>
               <div>

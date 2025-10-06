@@ -8,9 +8,10 @@ import { Input } from "@/components/ui/input"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Button } from "@/components/ui/button"
 import { ProjectCard } from "@/components/project-card"
+import { ALL_CHAINS } from "@/lib/chains"
 
-const categories = ["All", "DEX", "Bridge", "Lending", "Identity", "Analytics", "Infra"] as const
-const chains = ["All", "Oorth Nexus", "Ethereum"] as const
+const categories = ["All", "DEX", "Bridge", "Lending", "Identity", "Analytics", "Infra", "Wallet"] as const
+const chains = ["All", ...ALL_CHAINS] as const
 
 export default function ProjectsPage() {
   const [q, setQ] = useState("")

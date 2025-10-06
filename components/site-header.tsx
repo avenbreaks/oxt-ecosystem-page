@@ -21,7 +21,7 @@ export function SiteHeader() {
       <div className="container mx-auto px-4 md:px-8 h-16 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-2 font-semibold">
           <span className="inline-block h-6 w-6 rounded-full bg-primary" aria-hidden />
-          <span className="tracking-tight">Tech Eco</span>
+          <span className="tracking-tight">No :stem</span>
         </Link>
 
         <nav aria-label="Primary" className="hidden md:flex items-center gap-6">
@@ -39,16 +39,16 @@ export function SiteHeader() {
               <DropdownMenuLabel>Explore</DropdownMenuLabel>
               <DropdownMenuSeparator />
               <DropdownMenuItem asChild>
-                <Link href="#projects">Projects</Link>
+                <Link href="/project">Projects</Link>
               </DropdownMenuItem>
               <DropdownMenuItem asChild>
-                <Link href="#insights">Insights</Link>
+                <Link href="/insights">Insights</Link>
               </DropdownMenuItem>
               <DropdownMenuItem asChild>
-                <Link href="#events">Events</Link>
+                <Link href="/events">Events</Link>
               </DropdownMenuItem>
               <DropdownMenuItem asChild>
-                <Link href="#programs">Programs</Link>
+                <Link href="/programs">Programs</Link>
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
@@ -59,7 +59,7 @@ export function SiteHeader() {
           <Link href="#opportunities" className="text-sm font-medium hover:text-foreground/80">
             Opportunities
           </Link>
-          <Link href="#develop" className="text-sm font-medium hover:text-foreground/80">
+          <Link href="/develop" className="text-sm font-medium hover:text-foreground/80">
             Develop
           </Link>
         </nav>
