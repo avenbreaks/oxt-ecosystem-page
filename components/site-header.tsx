@@ -10,11 +10,19 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
 } from "@/components/ui/dropdown-menu"
-import { ChevronDown } from "lucide-react"
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet"
+import { ChevronDown, Menu } from "lucide-react"
 import { useState } from "react"
 
 export function SiteHeader() {
   const [open, setOpen] = useState(false)
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   return (
     <header className="sticky top-0 z-40 w-full bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b">
@@ -24,6 +32,7 @@ export function SiteHeader() {
           <span className="tracking-tight">No :stem</span>
         </Link>
 
+        {/* Desktop Navigation */}
         <nav aria-label="Primary" className="hidden md:flex items-center gap-6">
           <DropdownMenu open={open} onOpenChange={setOpen}>
             <DropdownMenuTrigger asChild>
@@ -65,14 +74,97 @@ export function SiteHeader() {
         </nav>
 
         <div className="flex items-center gap-2">
+          {/* Submit Project Button - Hidden on small mobile */}
           <Button
             asChild
             variant="default"
-            className="rounded-full bg-accent text-accent-foreground hover:opacity-90"
+            className="hidden sm:inline-flex rounded-full bg-accent text-accent-foreground hover:opacity-90"
             aria-label="Submit a new project"
           >
             <Link href="/project/new">Submit Project</Link>
           </Button>
+
+          {/* Mobile Menu Button */}
+          <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
+            <SheetTrigger asChild>
+              <Button
+                variant="ghost"
+                size="icon"
+                className="md:hidden"
+                aria-label="Open menu"
+              >
+                <Menu className="h-5 w-5" />
+              </Button>
+            </SheetTrigger>
+            <SheetContent side="right" className="w-[300px] sm:w-[400px]">
+              <SheetHeader>
+                <SheetTitle>Menu</SheetTitle>
+              </SheetHeader>
+              <nav className="flex flex-col gap-4 mt-8">
+                <div className="flex flex-col gap-2">
+                  <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-2">
+                    Ecosystem
+                  </p>
+                  <Link
+                    href="/project"
+                    className="text-base font-medium py-2 px-3 hover:bg-secondary rounded-md transition-colors"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    Projects
+                  </Link>
+                  <Link
+                    href="/insights"
+                    className="text-base font-medium py-2 px-3 hover:bg-secondary rounded-md transition-colors"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    Insights
+                  </Link>
+                  <Link
+                    href="/events"
+                    className="text-base font-medium py-2 px-3 hover:bg-secondary rounded-md transition-colors"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    Events
+                  </Link>
+                  <Link
+                    href="/programs"
+                    className="text-base font-medium py-2 px-3 hover:bg-secondary rounded-md transition-colors"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    Programs
+                  </Link>
+                </div>
+
+                <div className="h-px bg-border my-2" />
+
+                <Link
+                  href="#opportunities"
+                  className="text-base font-medium py-2 px-3 hover:bg-secondary rounded-md transition-colors"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  Opportunities
+                </Link>
+                <Link
+                  href="/develop"
+                  className="text-base font-medium py-2 px-3 hover:bg-secondary rounded-md transition-colors"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  Develop
+                </Link>
+
+                <div className="h-px bg-border my-2" />
+
+                <Button
+                  asChild
+                  className="rounded-full bg-accent text-accent-foreground hover:opacity-90 w-full"
+                >
+                  <Link href="/project/new" onClick={() => setMobileMenuOpen(false)}>
+                    Submit Project
+                  </Link>
+                </Button>
+              </nav>
+            </SheetContent>
+          </Sheet>
         </div>
       </div>
     </header>

@@ -11,16 +11,16 @@ export default function HomePage() {
       <SiteHeader />
       <main className="flex-1">
         <Hero />
-        <section className="container mx-auto px-4 md:px-8">
+        <section className="container mx-auto px-4 sm:px-6 md:px-8 py-8 sm:py-12 md:py-16">
           <SectionsGrid />
         </section>
 
         <PoweredByOptimism />
 
-        <section className="container mx-auto px-4 md:px-8 mt-20 md:mt-28">
-          <header className="mb-6 md:mb-8">
-            <p className="text-sm text-muted-foreground">All Insights</p>
-            <h2 className="text-balance text-3xl md:text-5xl font-semibold tracking-tight">Resources and Updates</h2>
+        <section className="container mx-auto px-4 sm:px-6 md:px-8 mt-12 sm:mt-16 md:mt-20 lg:mt-28">
+          <header className="mb-6 sm:mb-8 md:mb-10">
+            <p className="text-xs sm:text-sm text-muted-foreground">All Insights</p>
+            <h2 className="text-balance text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight mt-1">Resources and Updates</h2>
           </header>
           <ResourceCards />
         </section>

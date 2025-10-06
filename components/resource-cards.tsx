@@ -17,10 +17,10 @@ export function ResourceCards() {
     <div id="insights" className="relative flex w-full flex-col items-center justify-center overflow-hidden">
       <Marquee pauseOnHover className="[--duration:40s]">
         {resources.map((r, idx) => (
-          <Card key={`${r.title}-${idx}`} className={`${r.color} p-6 md:p-8 rounded-2xl w-[280px] md:w-[320px] shrink-0`}>
-            <div className="flex flex-col gap-2">
-              <span className="text-xs opacity-80">Insight</span>
-              <h3 className="text-pretty text-2xl font-semibold leading-7">{r.title}</h3>
+          <Card key={`${r.title}-${idx}`} className={`${r.color} p-4 sm:p-6 md:p-8 rounded-2xl w-[240px] sm:w-[280px] md:w-[320px] shrink-0`}>
+            <div className="flex flex-col gap-1.5 sm:gap-2">
+              <span className="text-[10px] sm:text-xs opacity-80">Insight</span>
+              <h3 className="text-pretty text-lg sm:text-xl md:text-2xl font-semibold leading-snug sm:leading-7">{r.title}</h3>
             </div>
           </Card>
         ))}
