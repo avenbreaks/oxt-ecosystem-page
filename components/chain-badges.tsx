@@ -4,7 +4,6 @@ import { useState } from "react"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { CHAIN_INFO } from "@/lib/chains"
-import Image from "next/image"
 
 interface ChainBadgesProps {
   chains: string[]
@@ -17,8 +16,9 @@ function ChainLogo({ chainInfo }: { chainInfo: any }) {
 
   if (chainInfo.logo.startsWith('http') && !imageError) {
     return (
-      <Image 
-        src={chainInfo.logo} 
+      // eslint-disable-next-line @next/next/no-img-element
+      <img
+        src={chainInfo.logo}
         alt={`${chainInfo.name} logo`}
         width={16}
         height={16}

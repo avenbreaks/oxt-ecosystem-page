@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation"
 import Link from "next/link"
+import Image from "next/image"
 import { PROJECTS } from "@/lib/projects"
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
@@ -52,7 +53,21 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
           {/* Summary */}
           <Card>
             <CardHeader className="grid grid-cols-[56px_1fr_auto] gap-4 items-start">
-              <div className="size-14 rounded-xl bg-secondary border" aria-hidden />
+              <div className="size-14 rounded-xl bg-secondary border flex items-center justify-center overflow-hidden">
+                {project.logoUrl ? (
+                  <Image
+                    src={project.logoUrl}
+                    alt={`${project.name} logo`}
+                    width={56}
+                    height={56}
+                    className="object-cover"
+                  />
+                ) : (
+                  <span className="text-2xl font-bold text-muted-foreground">
+                    {project.name.charAt(0)}
+                  </span>
+                )}
+              </div>
               <div>
                 <CardTitle className="text-xl">{project.name}</CardTitle>
                 <div className="mt-1">

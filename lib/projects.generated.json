@@ -1,5 +1,33 @@
 [
   {
+    "id": "recDsvZVy9e4BSUnj",
+    "name": "Rainbow Wallet",
+    "category": "Wallet",
+    "description": "Rainbow Wallet is a user-friendly, non-custodial Ethereum wallet designed to simplify the management of digital assets and interactions with decentralized applications (dApps). Available on iOS, Android, and as a browser extension, it offers features such as Ethereum Name Service (ENS) integration, in-app token swapping, and NFT support, making it accessible for both beginners and experienced users.\n",
+    "valueProposition": "Rainbow Wallet enhances the Web3 experience by providing a seamless interface for managing Ethereum-based assets. Its support for ENS allows users to replace complex wallet addresses with human-readable names, reducing errors and simplifying transactions.\n",
+    "website": "https://rainbow.me/",
+    "twitter": "https://x.com/rainbowdotme",
+    "github": "https://github.com/rainbow-me",
+    "chains": [
+      "Oorth Nexus",
+      "OP Mainnet",
+      "World Chain",
+      "Lisk",
+      "Mint",
+      "Celo",
+      "Ethereum",
+      "Zora",
+      "Arena-Z",
+      "Base",
+      "Ink",
+      "Unichain",
+      "Soneum",
+      "Mode"
+    ],
+    "logoUrl": "https://cdn.prod.website-files.com/678a77b8058ff9725bf70237/67b75f53af4e4c3342b7bfa2_67a3b28e8c0c3315bcbf840b_6761156a5f899db8ae8b77c8_FSuv7Zpo_400x400.avif",
+    "approvedAt": null
+  },
+  {
     "id": "recLC1bETaTL2zJO3",
     "name": "Hyperlane",
     "category": "Bridge",

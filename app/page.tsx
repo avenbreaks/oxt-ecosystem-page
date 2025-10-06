@@ -3,6 +3,7 @@ import { Hero } from "@/components/hero"
 import { SectionsGrid } from "@/components/sections-grid"
 import { ResourceCards } from "@/components/resource-cards"
 import { SiteFooter } from "@/components/site-footer"
+import { PoweredByOptimism } from "@/components/powered-by-optimism"
 
 export default function HomePage() {
   return (
@@ -13,6 +14,8 @@ export default function HomePage() {
         <section className="container mx-auto px-4 md:px-8">
           <SectionsGrid />
         </section>
+
+        <PoweredByOptimism />
 
         <section className="container mx-auto px-4 md:px-8 mt-20 md:mt-28">
           <header className="mb-6 md:mb-8">

@@ -2,49 +2,8 @@
 
 import { useState } from "react"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge" 
-import { Button } from "@/components/ui/button"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Copy, Check, ExternalLink } from "lucide-react"
-
-interface CodeBlockProps {
-  children: string
-  language?: string
-  title?: string
-}
-
-export function CodeBlock({ children, language = "bash", title }: CodeBlockProps) {
-  const [copied, setCopied] = useState(false)
-
-  const copyToClipboard = async () => {
-    await navigator.clipboard.writeText(children)
-    setCopied(true)
-    setTimeout(() => setCopied(false), 2000)
-  }
-
-  return (
-    <div className="relative group">
-      {title && (
-        <div className="flex items-center justify-between mb-2">
-          <span className="text-sm font-medium">{title}</span>
-          <Badge variant="outline" className="text-xs">{language}</Badge>
-        </div>
-      )}
-      <div className="relative bg-secondary rounded-lg p-4">
-        <button
-          onClick={copyToClipboard}
-          className="absolute top-2 right-2 p-2 rounded-md bg-background/50 hover:bg-background transition-colors opacity-0 group-hover:opacity-100"
-          aria-label="Copy code"
-        >
-          {copied ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
-        </button>
-        <pre className="text-sm overflow-x-auto">
-          <code className="font-mono">{children}</code>
-        </pre>
-      </div>
-    </div>
-  )
-}
+import { Badge } from "@/components/ui/badge"
+import { Terminal, TypingAnimation } from "@/components/ui/terminal"
 
 export function InteractiveGuide() {
   const [activeStep, setActiveStep] = useState(0)
@@ -141,12 +100,16 @@ oorth verify <contract-address>`
             ))}
           </div>
           <div>
-            <CodeBlock 
-              title={steps[activeStep].title}
-              language="bash"
-            >
-              {steps[activeStep].code}
-            </CodeBlock>
+            <div className="mb-3">
+              <Badge variant="outline" className="text-xs">bash</Badge>
+            </div>
+            <Terminal className="max-h-[500px]">
+              {steps[activeStep].code.split('\n').map((line, index) => (
+                <TypingAnimation key={`${activeStep}-${index}`} duration={30}>
+                  {line}
+                </TypingAnimation>
+              ))}
+            </Terminal>
           </div>
         </div>
       </CardContent>
