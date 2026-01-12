@@ -1,6 +1,1 @@
-<!-- Placeholder image for tutorial interop -->
-<svg width="400" height="225" viewBox="0 0 400 225" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <rect width="400" height="225" fill="#f3f4f6"/>
-  <circle cx="200" cy="112.5" r="30" fill="#f59e0b" opacity="0.6"/>
-  <text x="200" y="118" text-anchor="middle" fill="#374151" font-family="system-ui" font-size="14" font-weight="500">Interop</text>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="225" fill="none" viewBox="0 0 400 225"><rect width="400" height="225" fill="#f3f4f6"/><circle cx="200" cy="112.5" r="30" fill="#f59e0b" opacity=".6"/><text x="200" y="118" fill="#374151" font-family="system-ui" font-size="14" font-weight="500" text-anchor="middle">Interop</text></svg>
